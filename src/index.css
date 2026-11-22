@@ -1,0 +1,353 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   Staff Gateway design system
+   --------------------------------------------------------------------------
+   1. Raw tokens (:root = light, .dark = dark). Names mirror Figma 1:1
+      (color/text -> --text, status/success-bg -> --success-bg, ...).
+   2. @theme inline exposes them to Tailwind  (bg-glass-surface, text-text-muted,
+      border-input-edge, rounded-field, shadow-lift, text-label ...).
+   3. shadcn semantic aliases (primary, muted, accent, ring ...) point at the
+      design-system tokens so stock shadcn components inherit the system.
+   ========================================================================== */
+
+:root {
+  /* color / brand */
+  --primary: #0e5bbc;
+  --primary-dark: #00347c;
+  --on-primary: #ffffff;
+
+  /* color · surfaces and text */
+  --background: #d3dbe5;
+  --background-gradient: linear-gradient(170deg, #e4e9f0 0%, #cdd6e1 48%, #b7c3d2 100%);
+  --text: #182131;
+  --text-secondary: #334055;
+  --text-muted: #4a576b;
+  --link: #0e5bbc;
+  --glass-surface: rgb(255 255 255 / 0.55);
+  --glass-rail: rgb(255 255 255 / 0.38);
+  --glass-edge: rgb(255 255 255 / 0.72);
+  --glass-nested: rgb(255 255 255 / 0.32);
+  --popover: rgb(248 250 253 / 0.95);
+  --selection: rgb(255 255 255 / 0.55);
+  --active-pill: #ffffff;
+  --chip: rgb(255 255 255 / 0.22);
+  --chip-edge: rgb(255 255 255 / 0.95);
+  --hover: rgb(255 255 255 / 0.62);
+  --hairline: rgb(24 40 72 / 0.08);
+  --input-edge: rgb(110 128 156 / 0.45);
+  --field: rgb(255 255 255 / 0.62);
+  --opaque: #e9eef4;
+  --scrim: rgb(11 19 36 / 0.35);
+  --card-section: #ffffff;
+  --section-bg: rgb(238 241 246 / 0.55);
+
+  /* status */
+  --success: #15803d;
+  --success-bg: rgb(21 128 61 / 0.12);
+  --warning: #a15c07;
+  --warning-bg: rgb(251 191 37 / 0.22);
+  --destructive: #dc2626;
+  --destructive-bg: rgb(220 38 38 / 0.1);
+  --info: #4f46e5;
+  --info-bg: rgb(79 70 229 / 0.1);
+  --neutral: #4a576b;
+  --neutral-bg: rgb(24 40 72 / 0.07);
+  --unread: #d92d20;
+
+  /* tag */
+  --walaa: #0e5bbc;
+  --walaa-bg: rgb(14 91 188 / 0.12);
+  --direct: #6d28d9;
+  --direct-bg: rgb(124 58 237 / 0.11);
+
+  /* chart */
+  --chart-positive: #0e5bbc;
+  --chart-neutral: #f2b53a;
+  --chart-negative: #e0675f;
+  --chart-track: rgb(255 255 255 / 0.75);
+  --chart-series-2: #b67702;
+  --chart-series-3: #029e90;
+  --chart-series-4: #9470cd;
+  --chart-series-5: #cc5e6b;
+
+  /* elevation (primary glow is from Figma; others approximated from the spec board) */
+  --shadow-color: 24 33 49;
+  --glow-color: 14 91 188;
+
+  /* typography: Arabic must never be letter-spaced */
+  --title-tracking: -0.01em;
+
+  /* shadcn base radius (= field radius) */
+  --radius: 14px;
+}
+
+.dark {
+  /* color / brand */
+  --primary: #0e5bbc;
+  --primary-dark: #00347c;
+  --on-primary: #ffffff;
+
+  /* color · surfaces and text */
+  --background: #0c121c;
+  --background-gradient: linear-gradient(170deg, #121a27 0%, #0c121c 48%, #080c14 100%);
+  --text: #eef2f8;
+  --text-secondary: #c8d1de;
+  --text-muted: #9da9bc;
+  --link: #3981e5;
+  --glass-surface: rgb(255 255 255 / 0.06);
+  --glass-rail: rgb(255 255 255 / 0.04);
+  --glass-edge: rgb(255 255 255 / 0.1);
+  --glass-nested: rgb(255 255 255 / 0.03);
+  --popover: rgb(20 28 41 / 0.96);
+  --selection: rgb(255 255 255 / 0.1);
+  --active-pill: rgb(255 255 255 / 0.14);
+  --chip: rgb(255 255 255 / 0.03);
+  --chip-edge: rgb(255 255 255 / 0.18);
+  --hover: rgb(255 255 255 / 0.09);
+  --hairline: rgb(255 255 255 / 0.07);
+  --input-edge: rgb(255 255 255 / 0.22);
+  --field: rgb(255 255 255 / 0.05);
+  --opaque: #151d29;
+  --scrim: rgb(0 0 0 / 0.55);
+  --card-section: rgb(255 255 255 / 0.04);
+  --section-bg: rgb(255 255 255 / 0.02);
+
+  /* status */
+  --success: #6ee7a0;
+  --success-bg: rgb(21 128 61 / 0.22);
+  --warning: #fcd34d;
+  --warning-bg: rgb(251 191 37 / 0.18);
+  --destructive: #fca5a5;
+  --destructive-bg: rgb(220 38 38 / 0.2);
+  --info: #a5b4fc;
+  --info-bg: rgb(79 70 229 / 0.22);
+  --neutral: #c8d1de;
+  --neutral-bg: rgb(255 255 255 / 0.08);
+  --unread: #f87171;
+
+  /* tag */
+  --walaa: #3981e5;
+  --walaa-bg: rgb(14 91 188 / 0.22);
+  --direct: #c4b5fd;
+  --direct-bg: rgb(124 58 237 / 0.22);
+
+  /* chart */
+  --chart-positive: #1a64c5;
+  --chart-neutral: #f2b53a;
+  --chart-negative: #e0675f;
+  --chart-track: rgb(255 255 255 / 0.1);
+  --chart-series-2: #d79628;
+  --chart-series-3: #28bdad;
+  --chart-series-4: #b28fef;
+  --chart-series-5: #ef7d88;
+
+  --shadow-color: 0 0 0;
+}
+
+:lang(ar) {
+  --title-tracking: 0;
+}
+
+@theme inline {
+  /* Only design-system colors exist: the default Tailwind palette is removed so
+     generated code can't drift to bg-blue-600 & co. */
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* brand */
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-on-primary: var(--on-primary);
+
+  /* surfaces and text */
+  --color-background: var(--background);
+  --color-text: var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-link: var(--link);
+  --color-glass-surface: var(--glass-surface);
+  --color-glass-rail: var(--glass-rail);
+  --color-glass-edge: var(--glass-edge);
+  --color-glass-nested: var(--glass-nested);
+  --color-popover: var(--popover);
+  --color-selection: var(--selection);
+  --color-active-pill: var(--active-pill);
+  --color-chip: var(--chip);
+  --color-chip-edge: var(--chip-edge);
+  --color-hover: var(--hover);
+  --color-hairline: var(--hairline);
+  --color-input-edge: var(--input-edge);
+  --color-field: var(--field);
+  --color-opaque: var(--opaque);
+  --color-scrim: var(--scrim);
+  --color-card-section: var(--card-section);
+  --color-section-bg: var(--section-bg);
+
+  /* status */
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-destructive: var(--destructive);
+  --color-destructive-bg: var(--destructive-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-neutral: var(--neutral);
+  --color-neutral-bg: var(--neutral-bg);
+  --color-unread: var(--unread);
+
+  /* tag */
+  --color-walaa: var(--walaa);
+  --color-walaa-bg: var(--walaa-bg);
+  --color-direct: var(--direct);
+  --color-direct-bg: var(--direct-bg);
+
+  /* chart */
+  --color-chart-positive: var(--chart-positive);
+  --color-chart-neutral: var(--chart-neutral);
+  --color-chart-negative: var(--chart-negative);
+  --color-chart-track: var(--chart-track);
+  --color-chart-series-2: var(--chart-series-2);
+  --color-chart-series-3: var(--chart-series-3);
+  --color-chart-series-4: var(--chart-series-4);
+  --color-chart-series-5: var(--chart-series-5);
+
+  /* shadcn semantic aliases -> design-system tokens */
+  --color-foreground: var(--text);
+  --color-card: var(--card-section);
+  --color-card-foreground: var(--text);
+  --color-popover-foreground: var(--text);
+  --color-primary-foreground: var(--on-primary);
+  --color-secondary: var(--glass-surface);
+  --color-secondary-foreground: var(--text);
+  --color-muted: var(--glass-nested);
+  --color-muted-foreground: var(--text-muted);
+  --color-accent: var(--hover);
+  --color-accent-foreground: var(--text);
+  --color-destructive-foreground: var(--on-primary);
+  --color-border: var(--hairline);
+  --color-input: var(--input-edge);
+  --color-ring: var(--primary);
+  --color-chart-1: var(--chart-positive);
+  --color-chart-2: var(--chart-series-2);
+  --color-chart-3: var(--chart-series-3);
+  --color-chart-4: var(--chart-series-4);
+  --color-chart-5: var(--chart-series-5);
+  --color-sidebar: var(--glass-rail);
+  --color-sidebar-foreground: var(--text);
+  --color-sidebar-primary: var(--primary);
+  --color-sidebar-primary-foreground: var(--on-primary);
+  --color-sidebar-accent: var(--active-pill);
+  --color-sidebar-accent-foreground: var(--text);
+  --color-sidebar-border: var(--hairline);
+  --color-sidebar-ring: var(--primary);
+
+  /* typography — Outfit for Latin, Noto Kufi Arabic for Arabic glyphs.
+     Outfit has no Arabic glyphs, so the browser picks Kufi per character:
+     mixed EN/AR strings render with the right face automatically. */
+  --font-sans: "Outfit", "Noto Kufi Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Noto Kufi Arabic", "Outfit", ui-sans-serif, system-ui, sans-serif;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Figma text styles (Glass/*) */
+  --text-section-title: 22px;
+  --text-section-title--line-height: 1.3;
+  --text-section-title--letter-spacing: var(--title-tracking);
+  --text-section-title--font-weight: 400;
+  --text-body: 14px;
+  --text-body--line-height: 1.5;
+  --text-label: 13px;
+  --text-label--line-height: 1.4;
+  --text-label--font-weight: 500;
+  --text-caption: 12.5px;
+  --text-caption--line-height: 1.4;
+  --text-hint: 12px;
+  --text-hint--line-height: 18px;
+  --text-button: 14px;
+  --text-button--line-height: 1.2;
+  --text-button--font-weight: 500;
+  --text-button-sm: 13px;
+  --text-button-sm--line-height: 1.2;
+  --text-button-sm--font-weight: 500;
+
+  /* spacing — xs..3xl map onto Tailwind's 4px scale:
+     xs=1 (4) sm=2 (8) md=3 (12) lg=4 (16) xl=5 (20) 2xl=6 (24) 3xl=8 (32).
+     They are NOT registered as names: --spacing-sm/lg/xl would shadow
+     max-w-sm/lg/xl. Semantic layout spacing below is collision-free. */
+  --spacing-page: 32px;
+  --spacing-page-mobile: 16px;
+  --spacing-card: 24px;
+  --spacing-card-mobile: 18px;
+  --spacing-section: 52px;
+  --spacing-grid-gap: 16px;
+
+  /* radius */
+  --radius-card: 22px;
+  --radius-block: 18px;
+  --radius-chart-box: 8px;
+  --radius-field: 14px;
+  --radius-textarea: 20px;
+  --radius-icon-box: 12px;
+  --radius-tick: 6px;
+  --radius-pill: 999px;
+  --radius-section-card: 18px;
+  /* shadcn scale derived from --radius */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* elevation */
+  --shadow-panel: 0 1px 2px rgb(var(--shadow-color) / 0.06), 0 8px 24px rgb(var(--shadow-color) / 0.06);
+  --shadow-lift: 0 12px 32px rgb(var(--shadow-color) / 0.14);
+  --shadow-section-card: 0 1px 3px rgb(var(--shadow-color) / 0.08);
+  --drop-shadow-primary-glow: 0 9px 6px rgb(var(--glow-color) / 0.3);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans antialiased;
+    font-synthesis-weight: none;
+  }
+
+  /* In Arabic, Kufi leads so digits and punctuation match the script. */
+  html:lang(ar) {
+    @apply font-arabic;
+  }
+
+  body {
+    @apply min-h-dvh bg-background text-body text-text;
+    background-image: var(--background-gradient);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--primary) 22%, transparent);
+  }
+
+  /* Labels are sentence case — never uppercase. */
+  label,
+  button,
+  th,
+  [role="tab"],
+  [data-slot="badge"] {
+    text-transform: none;
+  }
+}

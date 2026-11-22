@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Staff Gateway</title>
+
+    <!-- Outfit (Latin) + Noto Kufi Arabic (Arabic), weights 300 / 400 / 500 / 600 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600&family=Outfit:wght@300;400;500;600&display=swap"
+    />
+
+    <!-- Apply saved theme + direction before first paint (no flash). -->
+    <script>
+      (function () {
+        try {
+          // ?theme=dark|light|system and ?lang=ar|en seed the saved preference.
+          var params = new URLSearchParams(location.search);
+          var qTheme = params.get("theme");
+          var qLang = params.get("lang");
+          if (qTheme === "light" || qTheme === "dark" || qTheme === "system")
+            localStorage.setItem("sg-theme", qTheme);
+          if (qLang === "ar" || qLang === "en") localStorage.setItem("sg-locale", qLang);
+          var theme = localStorage.getItem("sg-theme") || "system";
+          var dark =
+            theme === "dark" ||
+            (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          var root = document.documentElement;
+          if (dark) root.classList.add("dark");
+          root.style.colorScheme = dark ? "dark" : "light";
+          if (localStorage.getItem("sg-locale") === "ar") {
+            root.lang = "ar";
+            root.dir = "rtl";
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
