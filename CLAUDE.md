@@ -1,3 +1,4 @@
+@docs/REACT_GUIDELINES.md
 # Staff Gateway redesign
 
 React 19 + Vite + Tailwind v4 + shadcn/ui (Radix base, RTL enabled). Bilingual EN / AR.
